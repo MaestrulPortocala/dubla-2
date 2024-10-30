@@ -1,0 +1,61 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class SpotifyLikeApp extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Layout principal
+        BorderPane root = new BorderPane();
+
+        // Bara de cautare sus
+        HBox searchBar = new HBox();
+        searchBar.setPadding(new Insets(10));
+        searchBar.setSpacing(10);
+
+        TextField searchField = new TextField();
+        searchField.setPromptText("Search for music...");
+
+        Button searchButton = new Button("Search");
+
+        searchBar.getChildren().addAll(searchField, searchButton);
+        root.setTop(searchBar);
+
+        // Meniu lateral stanga
+        VBox menu = new VBox();
+        menu.setPadding(new Insets(10));
+        menu.setSpacing(15);
+
+        Button homeButton = new Button("Home");
+        Button libraryButton = new Button("Your Library");
+        Button playlistsButton = new Button("Playlists");
+        Button settingsButton = new Button("Settings");
+
+        menu.getChildren().addAll(homeButton, libraryButton, playlistsButton, settingsButton);
+        root.setLeft(menu);
+
+        // Sectiune principala pentru continut
+        ListView<String> contentArea = new ListView<>();
+        contentArea.getItems().addAll("Song 1", "Song 2", "Song 3", "Song 4", "Playlist 1", "Playlist 2");
+        root.setCenter(contentArea);
+
+        // Configurare scena si fereastra
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setTitle("Spotify-Like App");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
